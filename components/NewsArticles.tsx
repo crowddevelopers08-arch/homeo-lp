@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import BookingModal from "./BookingModal";
 
 type Highlight = {
   title: string;
@@ -76,6 +77,7 @@ function HighlightCard({ h }: { h: Highlight }) {
 
 export default function NewsArticles() {
   const [active, setActive] = useState(0);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   const goPrev = () => setActive((prev) => (prev === 0 ? highlights.length - 1 : prev - 1));
   const goNext = () => setActive((prev) => (prev === highlights.length - 1 ? 0 : prev + 1));
@@ -139,12 +141,18 @@ export default function NewsArticles() {
         </div>
 
         <div className="mt-14 flex justify-center">
-          <a href="#contact" className="group relative inline-flex rounded-[10px] bg-[#1f5fff] px-8 py-3.5 text-[14px] font-semibold text-white shadow-lg shadow-black/10 transition-opacity hover:opacity-90">
+          <button
+            type="button"
+            onClick={() => setBookingOpen(true)}
+            className="group relative inline-flex rounded-[10px] bg-[#1f5fff] px-8 py-3.5 text-[14px] font-semibold text-white shadow-lg shadow-black/10 transition-opacity hover:opacity-90"
+          >
             <svg className="pointer-events-none absolute inset-0 h-full w-full overflow-visible" aria-hidden="true"><rect x="7" y="7" rx="7" fill="none" stroke="white" strokeWidth="2" strokeDasharray="10 7" className="button-running-dash" style={{width:"calc(100% - 14px)",height:"calc(100% - 14px)"}}/></svg>
             <span className="relative z-10">Book a Consultation</span>
-          </a>
+          </button>
         </div>
       </div>
+
+      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
     </section>
   );
 }
