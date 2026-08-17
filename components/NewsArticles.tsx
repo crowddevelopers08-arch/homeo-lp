@@ -8,7 +8,7 @@ type Highlight = {
   text: string;
   alt: string;
   src: string;
-  /** Fraction-width sprite crop (e.g. "-left-full"); omit for a plain full-frame imag */
+  /** Fraction-width sprite crop (e.g. "-left-full"); omit for a plai */
   crop?: { position: string; widthClass: string };
 };
 
